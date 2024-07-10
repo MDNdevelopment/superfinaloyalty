@@ -4,9 +4,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "El Complejo",
+  title: "Superfina",
   description:
-    "¡Sé parte de la comunidad de El Complejo y obtén tu tarjeta de fidelización hoy!",
+    "¡Sé parte de la comunidad de la Superfina y obtén tu tarjeta de fidelización hoy!",
   icons: {
     icon: "/favicon.png",
   },
