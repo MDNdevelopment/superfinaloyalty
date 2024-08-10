@@ -8,7 +8,7 @@ export default function page() {
 
   console.log(isRegistered);
   if (!isRegistered) {
-    // redirect("/");
+    redirect("/");
   }
   return (
     <div className="d-flex justify-center items-center pt-10 w-5/6 lg:w-4/6 mx-auto">
