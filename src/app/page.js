@@ -7,11 +7,10 @@ import { useGetCardData } from "@/hooks/useGetCardData";
 export default function Home() {
   const { cardData, isLoading } = useGetCardData();
   if (isLoading) {
-    return <p>Loading</p>;
+    return <p>Cargando...</p>;
   }
   return (
     <main className="text-center">
-      <Navbar />
       <h1 className=" text-[2em] lg:text-[2.5em] font-bold text-primary-600 text-center mt-10">
         {cardData.business}
       </h1>

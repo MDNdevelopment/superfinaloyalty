@@ -31,21 +31,21 @@ export default function ConfirmationModal({
             </div>
             {/*body*/}
             <div className="relative p-6 flex-auto">
-              <p>
+              <p className="text-gray-500">
                 Verifica que los datos ingresados sean correctos, puesto que no
                 podrán ser modificados mas adelante.
               </p>
               <div className="flex flex-row mt-5 items-center">
-                <h3 className="text-lg font-bold mr-2">Nombre: </h3>
-                <p>{name}</p>
+                <h3 className="text-md font-bold mr-2">Nombre: </h3>
+                <p className="text-gray-700">{name}</p>
               </div>
               <div className="flex flex-row items-center">
-                <h3 className="text-lg font-bold mr-2">Correo electrónico: </h3>
-                <p>{email}</p>
+                <h3 className="text-md font-bold mr-2">Correo: </h3>
+                <p className="text-gray-700">{email}</p>
               </div>
               <div className="flex flex-row items-center">
-                <h3 className="text-lg font-bold mr-2">Teléfono: </h3>
-                <p>{phone}</p>
+                <h3 className="text-md font-bold mr-2">Teléfono: </h3>
+                <p className="text-gray-700">{phone}</p>
               </div>
             </div>
             {/*footer*/}

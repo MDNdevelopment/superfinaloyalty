@@ -10,12 +10,17 @@ import checkUser from "@/utils/checkUser";
 import enrollUser from "@/utils/enrollUser";
 import addUser from "@/utils/addUser";
 import ConfirmationModal from "./ConfirmationModal";
+import { useRouter } from "next/navigation";
+import { useRegisteredStore } from "@/app/stores/registeredStore";
+
 export default function CustomForm() {
   const [termsAccepted, setTermsAccepted] = useState("true");
   const flag = useFlagStore((state) => state);
   const [isLoading, setIsLoading] = useState(false);
   const [enrollError, setEnrollError] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
+  const setRegistered = useRegisteredStore((state) => state.setRegistered);
   const {
     register,
     handleSubmit,
@@ -54,8 +59,15 @@ export default function CustomForm() {
       pid: enroll.pid,
       cardLink: enroll.url,
     });
-    const cardURL = `https://q.passkit.net/~/#/p/${enroll.pid}`;
-    window.location.replace(cardURL);
+
+    console.log({ add });
+    if (!add) {
+      const cardURL = `https://q.passkit.net/~/#/p/${enroll.pid}`;
+      window.location.replace(cardURL);
+    } else {
+      setRegistered({ registered: true, email: data.email });
+      router.push("/exito");
+    }
   };
   const onSubmit = async (data) => {
     setShowModal(true);
