@@ -13,7 +13,7 @@ export default function page() {
   return (
     <div className="d-flex justify-center items-center pt-10 w-5/6 lg:w-4/6 mx-auto">
       <h1 className="font-bold text-3xl lg:text-5xl text-center">
-        ¡Registro Exitoso!
+        Revisa tu correo
       </h1>
       <p className="text-gray-950 mt-10 text-center">
         Tu registro se ha completado con éxito. Para finalizar el proceso, por
