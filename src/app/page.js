@@ -5,18 +5,39 @@ import PhoneInput from "@/components/PhoneInput";
 import { useGetCardData } from "@/hooks/useGetCardData";
 
 export default function Home() {
-  const { cardData, isLoading } = useGetCardData();
+  const { cardData, isLoading, error, retry } = useGetCardData();
   if (isLoading) {
     return <p>Cargando...</p>;
   }
+
+  if (error || !cardData) {
+    return (
+      <main className="text-center px-6 mt-10">
+        <h1 className="text-[1.5em] font-bold text-secondary mb-4">
+          No pudimos cargar la información
+        </h1>
+        <p className="text-gray-800 mb-6">
+          Ocurrió un problema al conectar con el servidor. Por favor revisa tu
+          conexión e intenta nuevamente.
+        </p>
+        <button
+          onClick={retry}
+          className="bg-secondary text-white px-4 py-2 rounded-md"
+        >
+          Reintentar
+        </button>
+      </main>
+    );
+  }
+
   return (
     <main className="text-center">
       <h1 className=" text-[2em] lg:text-[2.5em] font-bold text-primary-600 text-center mt-10">
-        {cardData.business}
+        {cardData?.business}
       </h1>
 
       <h2 className="text-[1.5em] lg:w-full w-4/5 mx-auto lg:text-[1.9em] font-bold text-secondary mb-10">
-        {cardData.description}
+        {cardData?.description}
       </h2>
 
       <CustomForm />
@@ -24,7 +45,7 @@ export default function Home() {
         Términos y condiciones
       </h2>
       <ul className="text-left text-gray-900 w-4/5 lg:w-2/5 mx-auto text-lg mb-12">
-        {cardData.terms.split("\n").map((term, index) => (
+        {(cardData?.terms ?? "").split("\n").map((term, index) => (
           <li className="my-2" key={`term-${index}`}>
             {term}
           </li>
