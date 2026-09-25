@@ -1,4 +1,3 @@
-import generateJWT from "@/utils/generateJWT";
 import { useCallback, useEffect, useState } from "react";
 
 const MAX_ATTEMPTS = 3;
@@ -20,30 +19,16 @@ export function useGetCardData() {
     let cancelled = false;
 
     const fetchOnce = async () => {
-      const jwt = generateJWT(
-        process.env.NEXT_PUBLIC_LL_API_KEY,
-        process.env.NEXT_PUBLIC_LL_API_SECRET,
-        process.env.NEXT_PUBLIC_LL_USERNAME
-      );
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_TERMS_URL}${process.env.NEXT_PUBLIC_URL_PROGRAM}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: jwt,
-          },
-        }
-      );
+      const response = await fetch("/api/card-data");
       if (!response.ok) {
         throw new Error(`Card data request failed with status ${response.status}`);
       }
       const data = await response.json();
-      if (!data?.business?.name || !data?.terms) {
+      if (!data?.business || !data?.terms) {
         throw new Error("Card data response is missing required fields");
       }
       return {
-        business: data.business.name,
+        business: data.business,
         collectValue: data.collectValue,
         description: data.description,
         terms: data.terms,

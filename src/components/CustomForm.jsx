@@ -3,8 +3,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import PhoneInput from "./PhoneInput";
 import { useFlagStore } from "@/app/stores/flagStore";
-// import enrollProcess from "../utils/enrollProcess";
-// import useUserSubscription from "@/hooks/useUserSuscription";
 import CustomSpinner from "./CustomSpinner";
 import checkUser from "@/utils/checkUser";
 import enrollUser from "@/utils/enrollUser";

@@ -1,4 +1,4 @@
-const crypt = require("crypto");
+import crypto from "crypto";
 
 export default function generateJWT(key, secret, username) {
   var body = {
@@ -22,7 +22,7 @@ function genTokenSign(token, secret) {
   if (token.length != 2) {
     return;
   }
-  var hash = crypt
+  var hash = crypto
     .createHmac("sha256", secret)
     .update(token.join("."))
     .digest("base64");
