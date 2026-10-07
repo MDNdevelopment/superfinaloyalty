@@ -5,6 +5,9 @@
 body {
   color: theme("colors.gray.900");
   background: theme("colors.cream");
+  /* evita que la ligatura "fi" se coma el punto de la i (Superfina) */
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "clig" 0;
 }
 
 @layer utilities {
