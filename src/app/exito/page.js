@@ -4,6 +4,7 @@ import { useRegisteredStore } from "../stores/registeredStore";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import detectPlatform from "@/utils/detectPlatform";
+import Hero from "@/components/Hero";
 
 const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=io.walletpasses.android&hl=en";
@@ -24,7 +25,9 @@ export default function page() {
   if (!isRegistered) return null;
 
   return (
-    <div className="d-flex justify-center items-center pt-10 w-5/6 lg:w-4/6 mx-auto">
+    <>
+    <Hero description="¡Ya casi eres parte del club!" />
+    <div className="-mt-12 relative z-10 bg-white rounded-3xl shadow-sm p-6 md:p-8 w-11/12 max-w-xl mx-auto mb-12">
       <h1 className="font-bold text-3xl lg:text-5xl text-center">
         Revisa tu correo
       </h1>
@@ -61,5 +64,6 @@ export default function page() {
         ¡Gracias por unirte a nosotros!
       </p>
     </div>
+    </>
   );
 }

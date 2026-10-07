@@ -80,12 +80,12 @@ export default function PhoneInput() {
     <div
       ref={dropdownRef}
       onClick={toggleFlagList}
-      className="cursor-pointer pl-2 pr-2 relative flex flex-row items-center"
+      className="cursor-pointer pl-3 pr-3 shrink-0 whitespace-nowrap relative flex flex-row items-center border-r border-gray-300 self-stretch"
     >
       <Flag country={flag.key} className="mr-1" />
-      <p className={`text-zinc-800`}>{flag.code}</p>
+      <p className={`text-zinc-800`}>+{flag.code}</p>
       {showFlagList && (
-        <ul className="overflow-y-scroll max-h-[15rem] flex flex-col justify-center items-left absolute top-full left-0 bg-gray-100 w-[15rem] rounded-b-lg">
+        <ul className="overflow-y-scroll max-h-[15rem] flex flex-col justify-center items-left absolute top-full left-0 bg-white shadow-lg z-20 w-[15rem] rounded-xl text-left">
           {countries.map((country) => (
             <li
               key={country.key}

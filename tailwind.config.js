@@ -18,6 +18,8 @@ module.exports = {
         secondary: {
           DEFAULT: "#FF6503",
         },
+        cream: "#F6F1EA",
+        peach: "#FDEBDD",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

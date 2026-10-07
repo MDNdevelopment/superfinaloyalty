@@ -1,8 +1,7 @@
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["400", "600", "700", "800"] });
 
 export const metadata = {
   title: "Superfina",
@@ -16,8 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es" translate="no">
-      <body className={inter.className}>
-        <Navbar />
+      <body className={font.className}>
         {children}
       </body>
     </html>

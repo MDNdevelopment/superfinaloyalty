@@ -1,12 +1,20 @@
 "use client";
 import CustomForm from "@/components/CustomForm";
+import CustomSpinner from "@/components/CustomSpinner";
 import WalletGuide from "@/components/WalletGuide";
+import Hero from "@/components/Hero";
+import Benefits from "@/components/Benefits";
 import { useGetCardData } from "@/hooks/useGetCardData";
 
 export default function Home() {
   const { cardData, isLoading, error, retry } = useGetCardData();
   if (isLoading) {
-    return <p>Cargando...</p>;
+    return (
+      <main className="flex justify-center items-center mt-20 text-gray-700">
+        <CustomSpinner />
+        Cargando...
+      </main>
+    );
   }
 
   if (error || !cardData) {
@@ -21,7 +29,7 @@ export default function Home() {
         </p>
         <button
           onClick={retry}
-          className="bg-secondary text-white px-4 py-2 rounded-md"
+          className="bg-secondary text-white px-6 py-3 rounded-full font-bold"
         >
           Reintentar
         </button>
@@ -30,27 +38,27 @@ export default function Home() {
   }
 
   return (
-    <main className="text-center">
-      <h1 className=" text-[2em] lg:text-[2.5em] font-bold text-primary-600 text-center mt-10">
-        {cardData?.business}
-      </h1>
-
-      <h2 className="text-[1.5em] lg:w-full w-4/5 mx-auto lg:text-[1.9em] font-bold text-secondary mb-10">
-        {cardData?.description}
-      </h2>
-
-      <WalletGuide />
-      <CustomForm />
-      <h2 className="text-[1.5em] lg:mt-0 mt-10 lg:text-[2em] lg:w-full w-4/5 mx-auto font-bold text-gray-800 text-center">
-        Términos y condiciones
-      </h2>
-      <ul className="text-left text-gray-900 w-4/5 lg:w-2/5 mx-auto text-lg mb-12">
-        {(cardData?.terms ?? "").split("\n").map((term, index) => (
-          <li className="my-2" key={`term-${index}`}>
-            {term}
-          </li>
-        ))}
-      </ul>
+    <main>
+      <Hero description={cardData?.description} />
+      <div className="px-4 -mt-12 relative z-10 max-w-xl mx-auto space-y-6 pb-12">
+        <Benefits />
+        <div className="bg-white rounded-3xl shadow-sm p-6 md:p-8 space-y-6">
+          <WalletGuide />
+          <CustomForm />
+        </div>
+        <section id="terminos" className="bg-white rounded-3xl shadow-sm p-6 md:p-8">
+          <h2 className="text-2xl font-extrabold text-gray-900 text-left">
+            Términos y condiciones
+          </h2>
+          <ul className="text-left text-gray-700 text-sm mt-3">
+            {(cardData?.terms ?? "").split("\n").map((term, index) => (
+              <li className="my-2" key={`term-${index}`}>
+                {term}
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
     </main>
   );
 }

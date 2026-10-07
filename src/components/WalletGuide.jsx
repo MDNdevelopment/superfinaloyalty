@@ -21,28 +21,33 @@ export default function WalletGuide() {
   const showIOS = platform === "ios" || platform === "unknown";
 
   return (
-    <div className="w-4/5 md:w-2/5 mx-auto mb-6 border-l-4 border-primary-800 bg-red-50 rounded-r-md overflow-hidden">
-      <button
-        onClick={() => setIsExpanded((prev) => !prev)}
-        className="w-full text-left px-4 py-4 font-semibold text-gray-800 flex justify-between items-center cursor-pointer transition-colors"
-      >
-        <div className="flex flex-col gap-0.5">
-          <span>📱 Guarda tu tarjeta en tu teléfono</span>
-          {!isExpanded && (
-            <span className="text-xs font-normal text-gray-500">
-              Toca aquí para ver las instrucciones
-            </span>
-          )}
+    <div className="bg-peach rounded-2xl p-5 text-left">
+      <div className="flex gap-4 items-center">
+        <svg className="w-16 h-16 flex-shrink-0 text-gray-900" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="12" y="3" width="24" height="42" rx="5" />
+          <path d="M20 7h8" />
+          <rect x="16" y="18" width="16" height="11" rx="2" className="text-secondary" stroke="#FF6503" />
+          <circle cx="34" cy="36" r="7" fill="#FF6503" stroke="none" />
+          <path d="M34 32.5v7M30.5 36h7" stroke="#fff" />
+        </svg>
+        <div>
+          <p className="font-bold text-secondary text-lg">Guía de registro</p>
+          <p className="text-gray-800 text-sm">
+            Lee estos pasos antes de registrarte: recibirás tu tarjeta por
+            correo y así podrás guardarla en tu celular.
+          </p>
         </div>
-        <span
-          className={`text-xl flex-shrink-0 ml-2 ${!isExpanded ? "animate-bounce" : ""}`}
-        >
-          {isExpanded ? "▲" : "▼"}
-        </span>
+      </div>
+      <button
+        type="button"
+        onClick={() => setIsExpanded((prev) => !prev)}
+        className="mt-3 text-sm font-semibold text-secondary underline cursor-pointer"
+      >
+        {isExpanded ? "Ocultar los pasos ▲" : "Ver los pasos ▼"}
       </button>
 
       {isExpanded && (
-        <div className="px-4 pb-4 text-gray-700 text-sm flex flex-col gap-4">
+        <div className="mt-3 text-gray-700 text-sm flex flex-col gap-4">
           {showAndroid && (
             <div>
               <p className="font-semibold text-gray-800 mb-2">Android</p>
@@ -60,7 +65,7 @@ export default function WalletGuide() {
                 href={PLAY_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded"
+                className="inline-block bg-secondary text-white font-semibold px-4 py-2 rounded-full"
               >
                 Descargar WalletPasses
               </a>
