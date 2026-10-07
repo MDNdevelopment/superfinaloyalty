@@ -85,7 +85,7 @@ export default function PhoneInput() {
       <Flag country={flag.key} className="mr-1" />
       <p className={`text-zinc-800`}>+{flag.code}</p>
       {showFlagList && (
-        <ul className="overflow-y-scroll max-h-[15rem] flex flex-col justify-center items-left absolute top-full left-0 bg-white shadow-lg z-20 w-[15rem] rounded-xl text-left">
+        <ul className="overflow-y-scroll max-h-[15rem] flex flex-col justify-start items-left absolute top-full left-0 bg-white shadow-lg z-20 w-[15rem] rounded-xl text-left">
           {countries.map((country) => (
             <li
               key={country.key}

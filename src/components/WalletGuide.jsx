@@ -41,7 +41,7 @@ export default function WalletGuide() {
       <button
         type="button"
         onClick={() => setIsExpanded((prev) => !prev)}
-        className="mt-3 text-sm font-semibold text-secondary underline cursor-pointer"
+        className="mt-3 text-sm font-semibold text-gray-900 underline cursor-pointer"
       >
         {isExpanded ? "Ocultar los pasos ▲" : "Ver los pasos ▼"}
       </button>

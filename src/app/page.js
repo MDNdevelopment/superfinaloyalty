@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import CustomForm from "@/components/CustomForm";
 import CustomSpinner from "@/components/CustomSpinner";
 import WalletGuide from "@/components/WalletGuide";
@@ -8,6 +9,7 @@ import { useGetCardData } from "@/hooks/useGetCardData";
 
 export default function Home() {
   const { cardData, isLoading, error, retry } = useGetCardData();
+  const [termsOpen, setTermsOpen] = useState(false);
   if (isLoading) {
     return (
       <main className="flex justify-center items-center mt-20 text-gray-700">
@@ -47,16 +49,43 @@ export default function Home() {
           <CustomForm />
         </div>
         <section id="terminos" className="bg-white rounded-3xl shadow-sm p-6 md:p-8">
-          <h2 className="text-2xl font-extrabold text-gray-900 text-left">
-            Términos y condiciones
-          </h2>
-          <ul className="text-left text-gray-700 text-sm mt-3">
-            {(cardData?.terms ?? "").split("\n").map((term, index) => (
-              <li className="my-2" key={`term-${index}`}>
-                {term}
-              </li>
-            ))}
-          </ul>
+          <div className="flex items-center justify-between gap-3">
+            <h2
+              onClick={() => setTermsOpen((prev) => !prev)}
+              className="text-2xl font-extrabold text-gray-900 text-left cursor-pointer"
+            >
+              Términos y condiciones
+            </h2>
+            <button
+              type="button"
+              onClick={() => setTermsOpen((prev) => !prev)}
+              aria-expanded={termsOpen}
+              aria-controls="terminos-lista"
+              aria-label={termsOpen ? "Ocultar términos" : "Mostrar términos"}
+              className="w-9 h-9 shrink-0 rounded-full bg-gray-100 flex items-center justify-center cursor-pointer"
+            >
+              <svg
+                className={`w-5 h-5 text-gray-900 transition-transform ${termsOpen ? "rotate-180" : ""}`}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+          </div>
+          {termsOpen && (
+            <ul id="terminos-lista" className="text-left text-gray-700 text-sm mt-3">
+              {(cardData?.terms ?? "").split("\n").map((term, index) => (
+                <li className="my-2" key={`term-${index}`}>
+                  {term}
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
       </div>
     </main>
